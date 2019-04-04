@@ -1,15 +1,18 @@
 package com.project.docnearby
 
+import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ProgressBar
-import android.widget.Switch
+import android.widget.*
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseUser
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,6 +22,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var signup: Button
     private lateinit var progressbar: ProgressBar
     private lateinit var remember: Switch
+
+    private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
+
 
 
     private val textWatcher: TextWatcher = object : TextWatcher {
@@ -42,6 +49,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        firebaseAuth = FirebaseAuth.getInstance()
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this)
+
 
 
         username =findViewById(R.id.username)
@@ -54,7 +64,42 @@ class MainActivity : AppCompatActivity() {
         username.addTextChangedListener(textWatcher)
         password.addTextChangedListener(textWatcher)
 
+        //Remember the account and password
+        remember.setOnCheckedChangeListener { view, isChecked ->
 
+            val editor = getSharedPreferences("save_UserPass", Context.MODE_PRIVATE).edit()
+
+            // If isChecked, remember the typed information for the next time
+            if(isChecked){
+                Log.d("MainActivity", "Remember checked")
+                val userSave = username.text.toString()
+                val passwordSave = password.text.toString()
+
+                editor.putString("userSave", userSave)
+                editor.putString("passwordSave", passwordSave)
+
+                editor.apply()
+
+            }
+
+            // If click unChecked, forget the typed information.
+            else {
+                editor.clear()
+                editor.apply()
+            }
+
+
+        }
+
+
+        //Retrieve the information if remembered.
+        val record = getSharedPreferences("save_UserPass", 0)
+
+        username.setText(record.getString("userSave", ""))
+        password.setText(record.getString("passwordSave", ""))
+
+
+        //SingnUp
         signup.setOnClickListener {
 
             val intent = Intent(this, SignUpActivity::class.java)
@@ -62,11 +107,89 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+        //Login
         login.setOnClickListener {
             progressbar.visibility = View.VISIBLE
+
+            val inputtedUsername: String = username.text.toString().trim()
+            val inputtedPassword: String = password.text.toString().trim()
+
+            firebaseAuth.signInWithEmailAndPassword(
+                inputtedUsername,
+                inputtedPassword
+            ).addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    firebaseAnalytics.logEvent("login_success", null)
+
+                    val currentUser: FirebaseUser? = firebaseAuth.currentUser
+                    Toast.makeText(
+                        this,
+                        "Logged in as: ${currentUser!!.email}",
+                        Toast.LENGTH_LONG
+                    ).show()
+
+                    //Advance to the next screen
+
+                    val intent: Intent = Intent(this, TestActivity::class.java)
+                    startActivity(intent)
+
+                } else {
+                    val exception = task.exception
+                    Toast.makeText(
+                        this,
+                        "Failed to login: $exception",
+                        Toast.LENGTH_LONG
+                    ).show()
+
+                    val reason: String = if (exception is FirebaseAuthInvalidCredentialsException){
+                        "invalid_credentials"
+                    } else {
+                        "generic_failure"
+                    }
+
+                    val bundle = Bundle()
+                    bundle.putString("error_reason", reason)
+
+                    firebaseAnalytics.logEvent("login_failed", bundle)
+
+                }
+
+
+                }
+            }
 
 
         }
 
+
+    override fun onStart() {
+        super.onStart()
+        Log.d("MainActivity", "onStart called")
     }
+
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("MainActivity", "onResume called")
+
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d("MainActivity", "onPause called")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d("MainActivity", "onStop called")
+
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("MainActivity", "onDestroy called")
+
+    }
+
+
 }
