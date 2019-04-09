@@ -1,10 +1,13 @@
 <resources>
     <string name="app_name">docnearby</string>
     <string name="login">Login</string>
-    <string name="username">Username</string>
+    <string name="username">Email as the Username</string>
     <string name="password">Password</string>
+    <string name="confirm">Confirm Password</string>
     <string name="signup">Sign Up</string>
     <string name="dontHaveAccount"> Don\'t have account yet? </string>
-    <string name="remember">Remember Me</string>
+    <string name="rememberAccount">Remember Account</string>
+    <string name="rememberPassword">Remember Password</string>
     <string name="fillbelow">Sign Up Below</string>
+
 </resources>

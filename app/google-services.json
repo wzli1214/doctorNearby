@@ -1,0 +1,35 @@
+{
+  "project_info": {
+    "project_number": "454608807680",
+    "firebase_url": "https://docnearby.firebaseio.com",
+    "project_id": "docnearby",
+    "storage_bucket": "docnearby.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:454608807680:android:5e585400d02162b1",
+        "android_client_info": {
+          "package_name": "com.project.docnearby"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYvwvzZyE7XmU8ZrjeUG8o3WkxkEMXejc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "454608807680-5ad1d8k42c9t092gtb76d38rn0elffv0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
