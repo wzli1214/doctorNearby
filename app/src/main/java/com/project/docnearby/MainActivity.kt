@@ -22,6 +22,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var signup: Button
     private lateinit var progressbar: ProgressBar
     private lateinit var remember: Switch
+    private lateinit var rememberPassword: Switch
+
 
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var firebaseAnalytics: FirebaseAnalytics
@@ -60,22 +62,46 @@ class MainActivity : AppCompatActivity() {
         progressbar=findViewById(R.id.progressBar)
         signup=findViewById(R.id.signup)
         remember=findViewById(R.id.remember)
+        rememberPassword=findViewById(R.id.rememberPass)
+
 
         username.addTextChangedListener(textWatcher)
         password.addTextChangedListener(textWatcher)
 
-        //Remember the account and password
+        //Remember the account
         remember.setOnCheckedChangeListener { view, isChecked ->
 
-            val editor = getSharedPreferences("save_UserPass", Context.MODE_PRIVATE).edit()
+            val editor = getSharedPreferences("save_UserAccount", Context.MODE_PRIVATE).edit()
 
             // If isChecked, remember the typed information for the next time
             if(isChecked){
                 Log.d("MainActivity", "Remember checked")
                 val userSave = username.text.toString()
-                val passwordSave = password.text.toString()
 
                 editor.putString("userSave", userSave)
+
+                editor.apply()
+
+            }
+
+            // If click unChecked, forget the typed information.
+            else {
+                editor.clear()
+                editor.apply()
+            }
+        }
+
+
+        //Remember the account
+        rememberPassword.setOnCheckedChangeListener { view, isChecked ->
+
+            val editor = getSharedPreferences("save_UserPassword", Context.MODE_PRIVATE).edit()
+
+            // If isChecked, remember the typed information for the next time
+            if(isChecked){
+                Log.d("MainActivity", "RememberPassword checked")
+                val passwordSave = password.text.toString()
+
                 editor.putString("passwordSave", passwordSave)
 
                 editor.apply()
@@ -87,19 +113,34 @@ class MainActivity : AppCompatActivity() {
                 editor.clear()
                 editor.apply()
             }
-
-
         }
 
 
-        //Retrieve the information if remembered.
-        val record = getSharedPreferences("save_UserPass", 0)
 
+
+        //Retrieve the account if remembered.
+        val record = getSharedPreferences("save_UserAccount", 0)
         username.setText(record.getString("userSave", ""))
-        password.setText(record.getString("passwordSave", ""))
+
+        //If the email is being remembered,
+        // the switch should be turned on by default."
+        if(username.text.toString() != ""){
+            remember.setChecked(true)
+        }
 
 
-        //SingnUp
+        //Retrieve the password information if remembered.
+        val recordPass = getSharedPreferences("save_UserPassword", 0)
+        password.setText(recordPass.getString("passwordSave", ""))
+
+        //If the email and/or password are being remembered,
+        // the switches should be turned on by default."
+        if(password.text.toString() != ""){
+            rememberPassword.setChecked(true)
+        }
+
+
+        //SignUp
         signup.setOnClickListener {
 
             val intent = Intent(this, SignUpActivity::class.java)

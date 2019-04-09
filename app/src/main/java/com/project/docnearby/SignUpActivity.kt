@@ -79,7 +79,7 @@ class SignUpActivity: AppCompatActivity() {
                     currentUser?.sendEmailVerification()
                     Toast.makeText(
                         this,
-                        "Verification email has sent to: ${currentUser!!.email}",
+                        "Registered as: ${currentUser!!.email}",
                         Toast.LENGTH_LONG
                     ).show()
                 } else {
