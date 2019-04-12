@@ -9,5 +9,9 @@
     <string name="rememberAccount">Remember Account</string>
     <string name="rememberPassword">Remember Password</string>
     <string name="fillbelow">Sign Up Below</string>
+    <string name="searchByDoc">Search by Doctor Name</string>
+    <string name="searchBySpeciality">Search by Speciality</string>
+    <string name="limit">Limit by</string>
+    <string name="search">Search</string>
 
 </resources>
