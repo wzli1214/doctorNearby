@@ -23,6 +23,17 @@ class DoctorActivity: AppCompatActivity() {
         recyclerView.layoutManager= LinearLayoutManager( this)
 
 
+        //  retrieve the lag and lng from SearchActivity
+        val bundle = getIntent().extras
+
+        val addPass = bundle.getString("addChose")
+        val latPass = bundle.getDouble("latChose")
+        val lngPass = bundle.getDouble("lngChose")
+        val symptPass = bundle.getString("SymptomToPass")
+
+        println("latPass" + " " + latPass)
+        println("lngPass" + " " +lngPass)
+        println("symptomPass" + " " + symptPass)
 
         doctorManger.retrieveDoctor(
 

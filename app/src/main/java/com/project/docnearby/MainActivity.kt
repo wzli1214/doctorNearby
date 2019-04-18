@@ -171,7 +171,7 @@ class MainActivity : AppCompatActivity() {
 
                     //Advance to the next screen
 
-                    val intent: Intent = Intent(this, TestActivity::class.java)
+                    val intent: Intent = Intent(this, SearchActivity::class.java)
                     startActivity(intent)
 
                 } else {
