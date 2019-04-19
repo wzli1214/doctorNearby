@@ -31,6 +31,16 @@ class SearchActivity: AppCompatActivity() {
         searchTextSymptom=findViewById(R.id.searchTextSympton)
         search=findViewById(R.id.search_button)
 
+        //actionbar
+        val actionbar = supportActionBar
+        //set actionbar title
+        actionbar!!.title = "Search Doctors"
+        //set back button
+        actionbar.setDisplayHomeAsUpEnabled(true)
+        actionbar.setDisplayHomeAsUpEnabled(true)
+
+
+
 
 
         //Affirm the location first, which could be found
@@ -148,6 +158,10 @@ class SearchActivity: AppCompatActivity() {
 
 
 
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
 }

@@ -22,6 +22,14 @@ class DoctorActivity: AppCompatActivity() {
 
         recyclerView.layoutManager= LinearLayoutManager( this)
 
+        //actionbar
+        val actionbar = supportActionBar
+        //set actionbar title
+        actionbar!!.title = "Search Results"
+        //set back button
+        actionbar.setDisplayHomeAsUpEnabled(true)
+        actionbar.setDisplayHomeAsUpEnabled(true)
+
 
         //  retrieve the lag and lng from SearchActivity
         val bundle = getIntent().extras
@@ -66,4 +74,8 @@ class DoctorActivity: AppCompatActivity() {
         )
 
 }
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
 }
