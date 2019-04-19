@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        username =findViewById(R.id.username)
+        username =findViewById(R.id.UserName)
         password=findViewById(R.id.password)
         login=findViewById(R.id.login)
         progressbar=findViewById(R.id.progressBar)

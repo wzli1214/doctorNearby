@@ -36,6 +36,11 @@ class DoctorActivity: AppCompatActivity() {
         println("symptomPass" + " " + symptPass)
 
         doctorManger.retrieveDoctor(
+            //Pass the apiKey, pass the lat and lng getting from the last intent
+            apiKey = "389e4699b2de080364e301ea9d22d156",
+            latChose = latPass,
+            lngChose = lngPass,
+            symptChose = symptPass,
 
             successCallback = { doctors ->
                 runOnUiThread {

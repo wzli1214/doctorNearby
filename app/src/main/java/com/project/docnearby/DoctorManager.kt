@@ -31,17 +31,34 @@ class DoctorManager {
 
 
     fun retrieveDoctor(
+        apiKey: String,
+        latChose: Double,
+        lngChose: Double,
+        symptChose: String,
         successCallback: (List<Doctor>) -> Unit,
         errorCallback: (Exception) -> Unit
     ) {
         // Data setup
-        val primaryKey = " "
+        val lat = latChose
+        val lng = lngChose
+        val miles = 100
+        val symptomSearch = symptChose
 
-        // Building the request, passing the OAuth token as a header
-        val request = Request.Builder()
-            .url("https://api.betterdoctor.com/2016-03-01/doctors?location=37.773%2C-122.413%2C100&user_location=37.773%2C-122.413&skip=0&limit=10&")
-            .header("user_key", "$primaryKey")
+        var request = Request.Builder()
+            .url("https://api.betterdoctor.com/2016-03-01/doctors?location=$lat%2C$lng%2C$miles&skip=0&limit=10&user_key=389e4699b2de080364e301ea9d22d156")
+            .header("user_key", apiKey)
             .build()
+
+        //If the user type a specific query, then do more advanced search with query, lat and lng.
+        if(symptomSearch != null){
+            // Building the request, passing the OAuth token as a header
+                request = Request.Builder()
+                .url("https://api.betterdoctor.com/2016-03-01/doctors?query=$symptomSearch&location=$lat%2C$lng%2C$miles&skip=0&limit=10&user_key=389e4699b2de080364e301ea9d22d156")
+                .header("user_key", apiKey)
+                .build()
+
+        }
+
 
         okHttpClient.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
@@ -58,12 +75,50 @@ class DoctorManager {
                     val incidents = JSONObject(responseString).getJSONArray("data")
                     for (i in 0 until incidents.length()) {
                         val curr = incidents.getJSONObject(i)
-                       // val linename = curr.getString("LinesAffected")
-                        //val desc = curr.getString("Description")
+
+                        val docFirstName = curr.getJSONObject("profile").getString("first_name")
+                        val docLastName = curr.getJSONObject("profile").getString("last_name")
+
+                        val docFullName = docFirstName + " " + docLastName
+
+
+                        val docBio = curr.getJSONObject("profile").getString("bio")
+
+//                        val docPhones = curr.getJSONArray("practices").getJSONObject(0)
+
+                        val docPhone = curr.getJSONArray("practices").getJSONObject(0)
+                            .getJSONArray("phones").getJSONObject(0).getString("number")
+
+
+
+                        val healthCenter = curr.getJSONArray("practices").getJSONObject(0)
+                            .getString("name")
+
+                        println("------------------------")
+                        println(healthCenter)
+
+                        val docStreet = curr.getJSONArray("practices").getJSONObject(0)
+                            .getJSONObject("visit_address").getString("street")
+
+                        val docState = curr.getJSONArray("practices").getJSONObject(0)
+                            .getJSONObject("visit_address").getString("state")
+
+                        val docZip = curr.getJSONArray("practices").getJSONObject(0)
+                            .getJSONObject("visit_address").getString("zip")
+
+                        val docAddress = docStreet + ", " + docState + ", " + docZip
+
 
                         docs.add(
                             Doctor(
-                                name = "http doctor name "
+                                name = docFullName,
+                                docDescription = docBio,
+                                docPhone = "Phone Number: " + "\n" + docPhone,
+                                centerName = "Health Center Name: " + "\n" + healthCenter,
+                                doctorAddress = "Address: " +  "\n" + docAddress
+
+
+
 
                             )
                         )
