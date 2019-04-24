@@ -53,12 +53,12 @@ class SignUpActivity: AppCompatActivity() {
         setContentView(R.layout.activity_signup)
 
         //actionbar
-        val actionbar = supportActionBar
-        //set actionbar title
-        actionbar!!.title = "Sign Up"
-        //set back button
-        actionbar.setDisplayHomeAsUpEnabled(true)
-        actionbar.setDisplayHomeAsUpEnabled(true)
+//        val actionbar = supportActionBar
+//        //set actionbar title
+//        actionbar!!.title = "@string/signup"
+//        //set back button
+//        actionbar.setDisplayHomeAsUpEnabled(true)
+//        actionbar.setDisplayHomeAsUpEnabled(true)
 
         firebaseAuth = FirebaseAuth.getInstance()
 

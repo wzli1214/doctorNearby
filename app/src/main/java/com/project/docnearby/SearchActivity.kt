@@ -31,13 +31,13 @@ class SearchActivity: AppCompatActivity() {
         searchTextSymptom=findViewById(R.id.searchTextSympton)
         search=findViewById(R.id.search_button)
 
-        //actionbar
-        val actionbar = supportActionBar
-        //set actionbar title
-        actionbar!!.title = "Search Doctors"
-        //set back button
-        actionbar.setDisplayHomeAsUpEnabled(true)
-        actionbar.setDisplayHomeAsUpEnabled(true)
+//        //actionbar
+//        val actionbar = supportActionBar
+//        //set actionbar title
+//        actionbar!!.title = "@strings/SearchDoctors"
+//        //set back button
+//        actionbar.setDisplayHomeAsUpEnabled(true)
+//        actionbar.setDisplayHomeAsUpEnabled(true)
 
 
 
