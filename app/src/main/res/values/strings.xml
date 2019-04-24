@@ -9,5 +9,13 @@
     <string name="rememberAccount">Remember Account</string>
     <string name="rememberPassword">Remember Password</string>
     <string name="fillbelow">Sign Up Below</string>
+    <string name="searchByLoc">Search by Location</string>
+    <string name="searchBySympt">Search by Symptom</string>
+    <string name="limit">Limit by</string>
+    <string name="search">Search</string>
+    <string name="TypeLocationPrompt">Type Location(required)</string>
+    <string name="TypeSymptomPrompt">Type Symptoms</string>
+
+
 
 </resources>

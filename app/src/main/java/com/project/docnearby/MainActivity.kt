@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        username =findViewById(R.id.username)
+        username =findViewById(R.id.UserName)
         password=findViewById(R.id.password)
         login=findViewById(R.id.login)
         progressbar=findViewById(R.id.progressBar)
@@ -171,7 +171,7 @@ class MainActivity : AppCompatActivity() {
 
                     //Advance to the next screen
 
-                    val intent: Intent = Intent(this, TestActivity::class.java)
+                    val intent: Intent = Intent(this, SearchActivity::class.java)
                     startActivity(intent)
 
                 } else {
