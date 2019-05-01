@@ -19,6 +19,10 @@
         <activity android:name=".SignUpActivity"></activity>
         <activity android:name=".SearchActivity"></activity>
         <activity android:name=".DoctorActivity"></activity>
+        <activity android:name=".PracSearchActivity"></activity>
+        <activity android:name=".PracticeActivity"></activity>
+
+
     </application>
 
 </manifest>

@@ -16,6 +16,9 @@
     <string name="TypeLocationPrompt">Type Location(required)</string>
     <string name="TypeSymptomPrompt">Type Symptoms</string>
     <string name="SearchDoctors">Search Doctors</string>
+    <string name="PracticeSearch">Practice Search</string>
+    <string name="SearchResults">Search Results</string>
+
 
 
 

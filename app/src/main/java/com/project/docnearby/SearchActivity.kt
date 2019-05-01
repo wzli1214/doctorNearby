@@ -6,6 +6,8 @@ import android.location.Geocoder
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Button
@@ -20,6 +22,30 @@ class SearchActivity: AppCompatActivity() {
     private lateinit var searchTextLoc: EditText
     private lateinit var searchTextSymptom: EditText
     private lateinit var search: Button
+    private lateinit var practiceSearch: Button
+
+
+    private val textWatcher: TextWatcher = object : TextWatcher {
+
+
+
+        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            val inputtedLocation: String = searchTextLoc.text.toString().trim()
+
+            val enablebutton: Boolean = (inputtedLocation.isNotEmpty())
+
+
+
+            search.isEnabled=enablebutton
+
+
+        }
+
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+        override fun afterTextChanged(p0: Editable?) {}
+
+    }
 
 
 
@@ -30,14 +56,25 @@ class SearchActivity: AppCompatActivity() {
         searchTextLoc=findViewById(R.id.searchLocation)
         searchTextSymptom=findViewById(R.id.searchTextSympton)
         search=findViewById(R.id.search_button)
+        practiceSearch = findViewById(R.id.PracSearch)
 
-//        //actionbar
-//        val actionbar = supportActionBar
+
+        searchTextLoc.addTextChangedListener(textWatcher)
+
+
+        //Todo:
+        //How to refer the string in Hindi to be as the title name?
+        //Currently, we used hard code.
+
+        //actionbar
+        val actionbar = supportActionBar
 //        //set actionbar title
-//        actionbar!!.title = "@strings/SearchDoctors"
-//        //set back button
-//        actionbar.setDisplayHomeAsUpEnabled(true)
-//        actionbar.setDisplayHomeAsUpEnabled(true)
+        actionbar!!.title =  getString(R.string.search)
+
+
+        //set back button
+        actionbar.setDisplayHomeAsUpEnabled(true)
+        actionbar.setDisplayHomeAsUpEnabled(true)
 
 
 
@@ -155,6 +192,15 @@ class SearchActivity: AppCompatActivity() {
 
 
         }
+
+        practiceSearch.setOnClickListener {
+            Log.d("SearchActivity", "practice search button clicked")
+            val intentPracSearch: Intent = Intent(this@SearchActivity, PracSearchActivity::class.java)
+            startActivity(intentPracSearch)
+        }
+
+
+
 
 
 

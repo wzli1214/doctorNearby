@@ -25,7 +25,7 @@ class DoctorActivity: AppCompatActivity() {
         //actionbar
         val actionbar = supportActionBar
         //set actionbar title
-        actionbar!!.title = "Search Results"
+        actionbar!!.title = getString(R.string.SearchResults)
         //set back button
         actionbar.setDisplayHomeAsUpEnabled(true)
         actionbar.setDisplayHomeAsUpEnabled(true)

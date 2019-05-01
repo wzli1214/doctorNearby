@@ -45,7 +45,7 @@ class DoctorManager {
         val symptomSearch = symptChose
 
         var request = Request.Builder()
-            .url("https://api.betterdoctor.com/2016-03-01/doctors?location=$lat%2C$lng%2C$miles&skip=0&limit=10&user_key=389e4699b2de080364e301ea9d22d156")
+            .url("https://api.betterdoctor.com/2016-03-01/doctors?location=$lat%2C$lng%2C$miles&skip=0&limit=10&user_key=$apiKey")
             .header("user_key", apiKey)
             .build()
 
@@ -53,7 +53,7 @@ class DoctorManager {
         if(symptomSearch != null){
             // Building the request, passing the OAuth token as a header
                 request = Request.Builder()
-                .url("https://api.betterdoctor.com/2016-03-01/doctors?query=$symptomSearch&location=$lat%2C$lng%2C$miles&skip=0&limit=10&user_key=389e4699b2de080364e301ea9d22d156")
+                .url("https://api.betterdoctor.com/2016-03-01/doctors?query=$symptomSearch&location=$lat%2C$lng%2C$miles&skip=0&limit=10&user_key=$apiKey")
                 .header("user_key", apiKey)
                 .build()
 
@@ -81,10 +81,16 @@ class DoctorManager {
 
                         val docFullName = docFirstName + " " + docLastName
 
+                        val docImage = curr.getJSONObject("profile").getString("image_url")
 
-                        val docBio = curr.getJSONObject("profile").getString("bio")
+                        //The bio has too much words, thus we retrieved the first paragraph.
+                        val docBio = curr.getJSONObject("profile").getString("bio").split("\n")
+                        println("see the bios "+ docBio[0] )
 
-//                        val docPhones = curr.getJSONArray("practices").getJSONObject(0)
+                        //The bio is too much words.
+//                        val split = docBio.split("\\n")
+//                        val firstParagraph = split.get(0)
+//                        println("brief bio "+ firstParagraph)
 
                         val docPhone = curr.getJSONArray("practices").getJSONObject(0)
                             .getJSONArray("phones").getJSONObject(0).getString("number")
@@ -109,13 +115,17 @@ class DoctorManager {
                         val docAddress = docStreet + ", " + docState + ", " + docZip
 
 
+
+
                         docs.add(
                             Doctor(
                                 name = docFullName,
-                                docDescription = docBio,
+                                //The bio has too much words, thus we retrieved the first paragraph.
+                                docDescription = docBio[0],
                                 docPhone = "Phone Number: " + "\n" + docPhone,
                                 centerName = "Health Center Name: " + "\n" + healthCenter,
-                                doctorAddress = "Address: " +  "\n" + docAddress
+                                doctorAddress = "Address: " +  "\n" + docAddress,
+                                iconUrl = docImage
 
 
 
