@@ -17,4 +17,9 @@
     <string name="TypeLocationPrompt">स्थान लिखें (आवश्यक)</string>
     <string name="TypeSymptomPrompt">लक्षण लिखें</string>
     <string name="SearchDoctors">डॉक्टर खोजें</string>
+    <string name="PracticeSearch">पद्धति खोजें</string>
+    <string name="SearchResults">खोज का परिणाम</string>
+    <string name="practiceName">पद्धति का नाम</string>
+    <string name="Search_by_Practice">पद्धति के द्वारा खोजें</string>
+
 </resources>
