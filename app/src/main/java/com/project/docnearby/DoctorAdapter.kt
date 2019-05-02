@@ -4,7 +4,9 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import com.squareup.picasso.Picasso
 
 class DoctorAdapter constructor(val doctor: List<Doctor>): RecyclerView.Adapter<DoctorAdapter.ViewHolder>() {
 
@@ -26,16 +28,24 @@ class DoctorAdapter constructor(val doctor: List<Doctor>): RecyclerView.Adapter<
         holder.healthCenterTextView.text = currentDoctor.centerName
         holder.doctorAddressTextView.text = currentDoctor.doctorAddress
 
+        Picasso.get().setIndicatorsEnabled(true)
+
+        Picasso.get()
+            .load(currentDoctor.iconUrl)
+            .into(holder.iconImageView)
+
     }
 
 
     class ViewHolder constructor(view: View): RecyclerView.ViewHolder(view){
-        val doctorNameTextView: TextView = view.findViewById(R.id.UserName)
+        val doctorNameTextView: TextView = view.findViewById(R.id.PracName)
         //Doctor bio
         val doctorBioTextView: TextView = view.findViewById(R.id.docDescription)
         val doctorPhoneTextView: TextView = view.findViewById(R.id.phone)
-        val healthCenterTextView: TextView = view.findViewById(R.id.centerName)
+        val healthCenterTextView: TextView = view.findViewById(R.id.centerAddress)
         val doctorAddressTextView: TextView = view.findViewById(R.id.docAddress)
+        val iconImageView: ImageView = view.findViewById(R.id.docImage)
+
 
 
 

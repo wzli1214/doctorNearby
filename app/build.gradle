@@ -29,6 +29,10 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
 
 
+
+    //Add Picasso to the project
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
     // Main dependency
     implementation 'com.google.firebase:firebase-core:16.0.4'
 
