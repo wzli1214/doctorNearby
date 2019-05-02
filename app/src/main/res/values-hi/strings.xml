@@ -1,20 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<string name="app_name">पास में डॉक्टर</string>
-<string name="login">लॉग इन करें</string>
-<string name="username">उपयोगकर्ता नाम के रूप में ईमेल करें</string>
-<string name="password">पासवर्ड</string>
-<string name="confirm">पासवर्ड की पुष्टि कीजिये</string>
-<string name="signup">साइन अप करें</string>
-<string name="dontHaveAccount">"अभी तक खाता नहीं है?"</string>
-<string name="rememberAccount">खाता याद रखें</string>
-<string name="rememberPassword">पासवर्ड याद रखें</string>
-<string name="fillbelow">नीचे साइन अप करें</string>
-<string name="searchByLoc">स्थान के आधार पर खोजें</string>
-<string name="searchBySympt">लक्षण द्वारा खोजें</string>
-<string name="limit">द्वारा सीमित करें</string>
-<string name="search">खोज करें</string>
-<string name="TypeLocationPrompt">स्थान लिखें (आवश्यक)</string>
-<string name="TypeSymptomPrompt">लक्षण लिखें</string>
-<string name="SearchDoctors">डॉक्टर खोजें</string>
+    <string name="app_name">पास में डॉक्टर</string>
+    <string name="login">लॉग इन करें</string>
+    <string name="username">उपयोगकर्ता नाम के रूप में ईमेल करें</string>
+    <string name="password">पासवर्ड</string>
+    <string name="confirm">पासवर्ड की पुष्टि कीजिये</string>
+    <string name="signup">साइन अप करें</string>
+    <string name="dontHaveAccount">"अभी तक खाता नहीं है?"</string>
+    <string name="rememberAccount">खाता याद रखें</string>
+    <string name="rememberPassword">पासवर्ड याद रखें</string>
+    <string name="fillbelow">नीचे साइन अप करें</string>
+    <string name="searchByLoc">स्थान के आधार पर खोजें</string>
+    <string name="searchBySympt">लक्षण द्वारा खोजें</string>
+    <string name="limit">द्वारा सीमित करें</string>
+    <string name="search">खोज करें</string>
+    <string name="TypeLocationPrompt">स्थान लिखें (आवश्यक)</string>
+    <string name="TypeSymptomPrompt">लक्षण लिखें</string>
+    <string name="SearchDoctors">डॉक्टर खोजें</string>
+    <string name="PracticeSearch">पद्धति खोजें</string>
+    <string name="SearchResults">खोज का परिणाम</string>
+
+    <string name="practiceName">पद्धति का नाम</string>
+    <string name="Search_by_Practice">पद्धति के द्वारा खोजें</string>
+
 </resources>

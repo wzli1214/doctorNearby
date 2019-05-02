@@ -18,9 +18,9 @@
     <string name="SearchDoctors">Search Doctors</string>
     <string name="PracticeSearch">Practice Search</string>
     <string name="SearchResults">Search Results</string>
-    <string name="searchByPrac">Search by Practice</string>
-    <string name="pracName">Practice Name</string>>
 
+    <string name="practiceName">Practice Name </string>
+    <string name="Search_by_Practice">Search by Practice</string>
 
 
 
