@@ -5,3 +5,12 @@ The app features the ability to sign up and login through email, input the locat
 This is a collaborate project, which is developed by Weizhao Li, Sarthak Poshattiwar.
 If you want to access this app, please contact us to get the API key.
 
+
+Screenshot:
+
+![image](https://github.com/wzli1214/doctorNearby/blob/DevWZ/screenshotsGit/1.png)
+
+![image](https://github.com/wzli1214/doctorNearby/blob/DevWZ/screenshotsGit/2.png)
+
+![image](https://github.com/wzli1214/doctorNearby/blob/DevWZ/screenshotsGit/3.png)
+
