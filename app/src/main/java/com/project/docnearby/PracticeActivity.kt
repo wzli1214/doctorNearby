@@ -38,7 +38,7 @@ class PracticeActivity: AppCompatActivity()  {
 
 
         practiceManager.retrievePractice(
-            apiKey = "389e4699b2de080364e301ea9d22d156",
+            apiKey = getString(R.string.doc_key),
             practiceName = inputtedPractice,
             successCallback = {practices ->
                 runOnUiThread{
